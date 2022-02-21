@@ -96,6 +96,16 @@ pathFinder(["a", "b", "c", "d"], { a: { b: { c: { d: "23" } } } });
 // example input { a: 'b', c: 'd' }, { c: 'd', a: 'b' }  /// output true
 // example input { a: 'c', c: 'a' }, { c: 'd', a: 'b', q: 's' }  /// output false
 
+const equalityCheck = (obj1, obj2) => {
+  return (
+    JSON.stringify(Object.entries(obj2).sort()) ==
+    JSON.stringify(Object.entries(obj1).sort())
+  );
+};
+
+equalityCheck({ a: "b", c: "d" }, { c: "d", a: "b" });
+equalityCheck({ a: "c", c: "a" }, { c: "d", a: "b", q: "s" });
+
 // 9. Please write a function which takes a list of keys and an object, then returns this object, just without keys from the list
 // example input ['color', 'size'], { color: 'Blue', id: '22', size: 'xl' }
 // example output { id: '22' }
