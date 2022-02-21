@@ -1,19 +1,22 @@
 // 1. Please write a function that shows the usage of closures
 
-function x() {
+const x = () => {
   const a = 1;
-  function y() {
+  const y = () => {
     console.log(a);
-  }
+  };
   y();
-}
-x()[
-  // 2. Please write a function that returns a sum of array items
-  // example input [9, 1, 22, 0, 2]
-  // example output 34
+};
+const z = x();
 
-  (9, 1, 22, 0, 2)
-].reduce((prevVal, currVal) => prevVal + currVal);
+z();
+
+// 2. Please write a function that returns a sum of array items
+// example input [9, 1, 22, 0, 2]
+// example output 34
+const sumArr = (arr) => arr.reduce((prevVal, currVal) => prevVal + currVal);
+
+sumArr([9, 1, 22, 0, 2]);
 
 // 3. Please write a recursive function that flattens a list of items
 // example input [[2, [4, [44,5,6]]], [4,5,6], [[2,4], 4], 5]]
@@ -22,23 +25,45 @@ x()[
 const flattenArray = (arr) => {
   return arr.flatMap((e) => {
     if (Array.isArray(e)) {
-      return flattenArray(e.flat());
+      return flattenArray(e);
     }
     return e;
   });
 };
 
-const arr = [[2, [4, [44, 5, 6]]], [4, 5, 6], [[2, 4], 4], 5];
-
-flattenArray(arr);
+flattenArray([[2, [4, [44, 5, 6]]], [4, 5, 6], [[2, 4], 4], 5]);
 
 // 4. Please write a function that finds all common elements of two arrays(only primitive types as array elements, order doesn't matter)
 // example inputs ['b', 3, 4, 76, 'c'], ['a', 'b', 4, 76, 21, 'e']
 // example output ['b', 4, 76]
 
+const findCommon = (arr1, arr2) => {
+  let results = [];
+  arr1.forEach((item1) => {
+    arr2.forEach((item2) => {
+      if (item1 === item2) {
+        results.push(item1);
+      }
+    });
+  });
+  return results;
+};
+
+const findCommonImproved = (arr1, arr2) => arr1.filter((e) => arr2.includes(e));
+
+findCommon(["b", 3, 4, 76, "c"], ["a", "b", 4, 76, 21, "e"]);
+findCommonImproved(["b", 3, 4, 76, "c"], ["a", "b", 4, 76, 21, "e"]);
+
 // 5. Please write a function that finds all different elements of two arrays(only primitive types as array elements, order doesn't matter)
 // example inputs ['b', 3, 4, 76, 'c'], ['a', 'b', 4, 76, 21, 'e']
 // example output ['a', 3, 21, 'c', 'e']
+
+const findDifference = (arr1, arr2) =>
+  arr1
+    .filter((e) => !arr2.includes(e))
+    .concat(arr2.filter((e) => !arr1.includes(e)));
+
+findDifference(["b", 3, 4, 76, "c"], ["a", "b", 4, 76, 21, "e"]);
 
 // 6. Please write a function that takes two arrays of items and returns an array of tuples made from two input arrays at the same indexes. Excessive items should be dropped.
 // example input [1,2,3], [4,5,6,7]
