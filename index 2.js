@@ -69,6 +69,17 @@ findDifference(["b", 3, 4, 76, "c"], ["a", "b", 4, 76, 21, "e"]);
 // example input [1,2,3], [4,5,6,7]
 // example output [[1,4], [2,5], [3,6]]
 
+const createTuples = (arr1, arr2) => {
+  let results = [];
+  const iterator = arr1 >= arr2 ? arr2.length : arr1.length;
+  for (let i = 0; i < iterator; i++) {
+    results.push([arr1[i], arr2[i]]);
+  }
+  return results;
+};
+
+createTuples([1, 2, 3], [4, 5, 6, 7]);
+
 // 7. Please write a function which takes a path(path is an array of keys) and object, then returns value at this path. If value at path doesn't exists, return undefined.
 // example inputs ['a', 'b', 'c', 'd'], { a: { b: { c: { d: '23' } } } }
 // example output '23'
