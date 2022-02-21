@@ -84,6 +84,14 @@ createTuples([1, 2, 3], [4, 5, 6, 7]);
 // example inputs ['a', 'b', 'c', 'd'], { a: { b: { c: { d: '23' } } } }
 // example output '23'
 
+const pathFinder = (arr, obj) => {
+  arr.forEach((e) => (obj = obj[e]));
+  return obj;
+};
+
+pathFinder(["a", "b", "c", "d"], { a: { b: { c: "" } } });
+pathFinder(["a", "b", "c", "d"], { a: { b: { c: { d: "23" } } } });
+
 // 8. Please write compare function which compares 2 objects for equality.
 // example input { a: 'b', c: 'd' }, { c: 'd', a: 'b' }  /// output true
 // example input { a: 'c', c: 'a' }, { c: 'd', a: 'b', q: 's' }  /// output false
